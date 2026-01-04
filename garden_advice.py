@@ -5,21 +5,31 @@ plant_type = input("Enter the plant type (flower/vegetable): ").lower()
 # Variable to hold gardening advice
 advice = ""
 
-# Determine advice based on the season
-if season == "summer":
-    advice += "Water your plants regularly and provide some shade.\n"
-elif season == "winter":
-    advice += "Protect your plants from frost with covers.\n"
-else:
-    advice += "No advice for this season.\n"
+# Dictionaries to store gardening advice
+SEASON_ADVICE = {
+    "summer": "Water your plants regularly and provide some shade.\n",
+    "winter": "Protect your plants from frost with covers.\n",
+}
 
-# Determine advice based on the plant type
-if plant_type == "flower":
-    advice += "Use fertiliser to encourage blooms."
-elif plant_type == "vegetable":
-    advice += "Keep an eye out for pests!"
-else:
-    advice += "No advice for this type of plant."
+PLANT_ADVICE = {
+    "flower": "Use fertiliser to encourage blooms.",
+    "vegetable": "Keep an eye out for pests!",
+}
 
-# Print the generated advice
-print(advice)
+
+def get_gardening_advice(season, plant_type):
+    """
+    Returns gardening advice based on season and plant type.
+
+    :param season: str
+    :param plant_type: str
+    :return: str
+    """
+    advice = ""
+    advice += SEASON_ADVICE.get(season, "No advice for this season.\n")
+    advice += PLANT_ADVICE.get(plant_type, "No advice for this type of plant.")
+    return advice
+
+
+# Generate and print advice
+print(get_gardening_advice(season, plant_type))
